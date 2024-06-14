@@ -9,6 +9,7 @@ window.geometry('600x600')
 backgroundButtonColor = 'gray'
 textColorButton = 'white'
 
+
 frame = tk.Frame(
    window, #Обязательный параметр, который указывает окно для размещения Frame.
    padx = 10, #Задаём отступ по горизонтали.
@@ -16,9 +17,28 @@ frame = tk.Frame(
 )
 frame.pack(expand=True) #Не забываем позиционировать виджет в окне. Здесь используется метод pack. С помощью свойства expand=True указываем, что Frame заполняет весь контейнер, созданный для него.
 
+searchFrame = tk.Frame(
+    window,
+    padx = 10, #Задаём отступ по горизонтали.
+    pady = 10 #Задаём отступ по вертикали.
+)
+searchFrame.pack(expand=True)
+
+def seeAllBook():
+    frame.pack_forget()
+    window.title('Весь справочник')
+
+def getSearchFamilyFrame():
+    frame.pack_forget()
+    searchFrame.pack()
+    window.title('Поиск по фамилии')
+
+searchFrame.pack_forget()
+
 button_seeAllBook = tk.Button(
     frame,
     text='X         Отобразить весь справочник         X',
+    command=lambda: seeAllBook()
 )
 
 button_seeAllBook.pack(
@@ -36,7 +56,8 @@ button_searchAbonentFamily = tk.Button(
     frame,
     text='X         Найти абонента по фамилии         X',
     bg=backgroundButtonColor,
-    fg=textColorButton
+    fg=textColorButton,
+    command=lambda: getSearchFamilyFrame()
 )
 
 button_searchAbonentFamily.pack(
@@ -102,4 +123,20 @@ button_exit.config(
     fg=textColorButton
 )
 
+searchLabel = tk.Label(
+    searchFrame,
+    text='Введите фамилию для поиска'
+)
+searchLabel.config(
+    fg=textColorButton
+)
+
+search_tf = tk.Entry(
+    searchFrame,
+
+)
+search_tf.grid(row=3, column=2)
+
+searchLabel.grid(row=3, column=1)
 window.mainloop() #Метод с помощью которого окно открывается и не закрывается, пока пользователь его не закроет
+
