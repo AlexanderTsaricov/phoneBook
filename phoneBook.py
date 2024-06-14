@@ -1,7 +1,7 @@
 import tkinter as tk 
-from tk import * #импорт всего
-from tkinter import ttk
-from tkinter import messagebox #импорт модулей
+from tk import * 
+# from tkinter import ttk
+# from tkinter import messagebox 
 window = tk.Tk() #создаем окно
 window.title('Телефонная книга')
 window.geometry('600x600')
@@ -16,9 +16,9 @@ frame = tk.Frame(
 )
 frame.pack(expand=True) #Не забываем позиционировать виджет в окне. Здесь используется метод pack. С помощью свойства expand=True указываем, что Frame заполняет весь контейнер, созданный для него.
 
-button_seeAllBook = ttk.Button(
+button_seeAllBook = tk.Button(
     frame,
-    text='X         Отобразить весь справочник         X'
+    text='X         Отобразить весь справочник         X',
 )
 
 button_seeAllBook.pack(
@@ -27,7 +27,64 @@ button_seeAllBook.pack(
     expand=True
 )
 
-button_exit = ttk.Button(
+button_seeAllBook.config(
+    bg=backgroundButtonColor,
+    fg=textColorButton
+)
+
+button_searchAbonentFamily = tk.Button(
+    frame,
+    text='X         Найти абонента по фамилии         X',
+    bg=backgroundButtonColor,
+    fg=textColorButton
+)
+
+button_searchAbonentFamily.pack(
+    ipadx=100,
+    ipady=5,
+    expand=True
+)
+
+button_searchTelephonNumber = tk.Button(
+    frame,
+    text='X         Найти с помощью номера телефона         X',
+    bg=backgroundButtonColor,
+    fg=textColorButton
+)
+
+button_searchTelephonNumber.pack(
+    ipadx=78,
+    ipady=5,
+    expand=True
+)
+
+button_addAbonentOrChangeData = tk.Button(
+    frame,
+    text='X         Добавить абонента или изменить данные         X',
+    bg=backgroundButtonColor,
+    fg=textColorButton
+)
+
+button_addAbonentOrChangeData.pack(
+    ipadx=66,
+    ipady=5,
+    expand=True
+)
+
+button_saveInTextFormat = tk.Button(
+    frame,
+    text='X         Сохранить в текстовом формате         X',
+    bg=backgroundButtonColor,
+    fg=textColorButton
+)
+
+button_saveInTextFormat.pack(
+    ipadx=90,
+    ipady=5,
+    expand=True
+)
+
+button_exit = tk.Button(
     frame,
     text='X        Выход        X',
     command=lambda: frame.quit(),
@@ -35,11 +92,14 @@ button_exit = ttk.Button(
 )
 
 button_exit.pack(
-    ipadx=100,
+    ipadx=166,
     ipady=5,
     expand=True,
 )
 
-button_exit
+button_exit.config(
+    bg=backgroundButtonColor,
+    fg=textColorButton
+)
 
 window.mainloop() #Метод с помощью которого окно открывается и не закрывается, пока пользователь его не закроет
