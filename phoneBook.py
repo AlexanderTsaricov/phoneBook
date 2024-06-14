@@ -9,7 +9,6 @@ window.geometry('600x600')
 backgroundButtonColor = 'gray'
 textColorButton = 'white'
 
-
 frame = tk.Frame(
    window, #Обязательный параметр, который указывает окно для размещения Frame.
    padx = 10, #Задаём отступ по горизонтали.
@@ -24,14 +23,52 @@ searchFrame = tk.Frame(
 )
 searchFrame.pack(expand=True)
 
+addAbonent = tk.Frame(
+    window,
+    padx = 10, #Задаём отступ по горизонтали.
+    pady = 10 #Задаём отступ по вертикали.
+)
+addAbonent.pack(expand=True)
+addAbonent.pack_forget()
+
+allBookFrame = tk.Frame(
+    window,
+    padx = 10, #Задаём отступ по горизонтали.
+    pady = 10 #Задаём отступ по вертикали.
+)
+allBookFrame.pack_forget()
+
+
+
 def seeAllBook():
     frame.pack_forget()
+    allBookFrame.pack()
     window.title('Весь справочник')
 
 def getSearchFamilyFrame():
     frame.pack_forget()
     searchFrame.pack()
     window.title('Поиск по фамилии')
+
+def getAddAbonentFrame():
+    frame.pack_forget()
+    addAbonent.pack()
+    window.title('Добавить абонента')
+
+def openWithReed():
+    book = open('book.txt', 'r', encoding='utf-8')
+    text = book.read()
+    return text
+
+def openWithWrite():
+    book = open('book.txt', 'a', encoding='utf-8')
+    text = []
+    text.append(addFamilynameLabel_tf.get())
+    text.append(addNameAbonentLabel_tf.get())
+    text.append(addTelephonNumberLabel_tf.get())
+    book.write('\n' + ' '.join(text))
+    book.close()
+
 
 searchFrame.pack_forget()
 
@@ -83,7 +120,8 @@ button_addAbonentOrChangeData = tk.Button(
     frame,
     text='X         Добавить абонента или изменить данные         X',
     bg=backgroundButtonColor,
-    fg=textColorButton
+    fg=textColorButton,
+    command=lambda: getAddAbonentFrame()
 )
 
 button_addAbonentOrChangeData.pack(
@@ -137,6 +175,54 @@ search_tf = tk.Entry(
 )
 search_tf.grid(row=3, column=2)
 
+allBookLabel = tk.Label(
+    allBookFrame,
+    text = openWithReed()
+)
+allBookLabel.pack()
+
+addFamilynameLabel = tk.Label(
+    addAbonent,
+    text='Введите фамилию'
+)
+addFamilynameLabel.pack(
+    ipadx=90,
+    ipady=5,
+    expand=True
+)
+addFamilynameLabel.grid(row=3, column=1)
+addFamilynameLabel_tf = tk.Entry(
+    addAbonent,
+)
+addFamilynameLabel_tf.grid(row=3, column=2)
+addNameAbonentLabel = tk.Label(
+    addAbonent,
+    text='Введите имя'
+)
+addNameAbonentLabel.grid(row=4, column=1)
+addNameAbonentLabel_tf = tk.Entry(
+    addAbonent,
+)
+addNameAbonentLabel_tf.grid(row=4, column=2)
 searchLabel.grid(row=3, column=1)
+addTelephonNumberLabel = tk.Label(
+    addAbonent,
+    text='Введите номер телефона'
+)
+addTelephonNumberLabel.grid(row=5, column=1)
+addTelephonNumberLabel_tf = tk.Entry(
+    addAbonent,
+)
+addTelephonNumberLabel_tf.grid(row=5, column=2)
+button_addAbonent = tk.Button(
+    addAbonent,
+    text='Сохранить абонента',
+    bg=backgroundButtonColor,
+    fg=textColorButton,
+    command=lambda: openWithWrite()
+)
+button_addAbonent.grid(row=6, column=2)
+
+
 window.mainloop() #Метод с помощью которого окно открывается и не закрывается, пока пользователь его не закроет
 
