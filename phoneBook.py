@@ -68,7 +68,7 @@ def openWithReed():
 def listToDict(textInbook):
     abonents = textInbook.split('\n')
     dictAbonents = {}
-    if len(abonents) < 2:
+    if len(textInbook) < 2:
         return {}
     print(len(abonents))
     for i in abonents:
@@ -91,6 +91,7 @@ def openWithWrite():
     dictAbonents = listToDict(textInbook)
 
     dictAbonents[(text[0] + ' ' + text[1])] = text[2]
+    print(dictAbonents)
     book = open('book.txt', 'w', encoding='utf-8')
     strigWrite = '\n'.join(f'{key}..........{value}' for key, value in dictAbonents.items())
     book.write(strigWrite)
