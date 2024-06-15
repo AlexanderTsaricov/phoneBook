@@ -68,6 +68,9 @@ def openWithReed():
 def listToDict(textInbook):
     abonents = textInbook.split('\n')
     dictAbonents = {}
+    if len(abonents) < 2:
+        return {}
+    print(len(abonents))
     for i in abonents:
         keyFirst = i.split(('.'*10))
         dictAbonents[keyFirst[0]] = keyFirst[1]
